@@ -4,9 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Verbs.Spanish.Views"
+             xmlns:prism="http://prismlibrary.com/"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="600"
+             prism:ViewModelLocator.AutoWireViewModel="True" >
     <Grid>
-            <TextBlock Width="200" Height="25" Background="Olive" Text="Panel"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=ElapsedTime}" Width="200" Margin="10"></TextBlock>
+                <Button Content="Start" Command="{Binding Path=StartCommand}" Width="100" Margin="10"></Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=Pronoun}" Width="100" Margin="10"></TextBlock>
+                <TextBlock Text="{Binding Path=Verb}" Width="200" Margin="10"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Path=Answer, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="10"></TextBox>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
