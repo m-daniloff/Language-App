@@ -2,6 +2,7 @@
 using Prism.Unity;
 using Verbs.DemoApp.Views;
 using System.Windows;
+using Prism.Modularity;
 
 namespace Verbs.DemoApp
 {
@@ -15,6 +16,12 @@ namespace Verbs.DemoApp
         protected override void InitializeShell()
         {
             Application.Current.MainWindow.Show();
+        }
+
+        protected override void ConfigureModuleCatalog()
+        {
+            ModuleCatalog moduleCatalog = (ModuleCatalog) this.ModuleCatalog;
+            moduleCatalog.AddModule(typeof(Verbs.Spanish.Module.SpanishModule));
         }
     }
 }
