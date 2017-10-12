@@ -14,7 +14,8 @@ namespace ScratchPad
         {
            // Test();
      //       ReadBack();
-            //ReadBackImport();
+            ReadBackImport();
+            //CsvTest();
         }
 
         static Dictionary<string, List<Verb>> dictionary = new Dictionary<string, List<Verb>>();
@@ -86,14 +87,14 @@ namespace ScratchPad
             return t;
         }
 
-        //private static void ReadBackImport()
-        //{
-        //    using (StreamReader reader = new StreamReader(@"C:\Temp\Verbs.json"))
-        //    {
-        //        string json = reader.ReadToEnd();
-        //        var result = JsonConvert.DeserializeObject<List<ImportVerb>>(json);
-        //    }
-        //}
+        private static void ReadBackImport()
+        {
+            using (StreamReader reader = new StreamReader(@"C:\Temp\out.json"))
+            {
+                string json = reader.ReadToEnd();
+                var result = JsonConvert.DeserializeObject<Dictionary<string, List<Verb>>>(json);
+            }
+        }
 
         //private static void Test()
         //{
