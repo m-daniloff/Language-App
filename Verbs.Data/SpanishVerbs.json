@@ -1,0 +1,86 @@
+﻿{
+  "abrir": {
+    "english": "to open",
+    "irregular_forms": {
+      "Participio": "abierto"
+    },
+    "verb_suffix": "ir"
+  },
+  "acabar": {
+    "english": "to end",
+    "irregular_forms": {},
+    "verb_suffix": "ar"
+  },
+  "aceptar": {
+    "english": "to accept",
+    "irregular_forms": {},
+    "verb_suffix": "ar"
+  },
+  "alcanzar": {
+    "english": "to reach",
+    "irregular_forms": {
+      "Pretérito Indicativo; 1a persona; singular": "alcancé",
+      "Presente Subjuntivo; 1a persona; singular": "alcance",
+      "Presente Subjuntivo; 2a persona; singular": "alcances",
+      "Presente Subjuntivo; 3a persona; singular": "alcance",
+      "Presente Subjuntivo; 1a persona; plural": "alcancemos",
+      "Presente Subjuntivo; 2a persona; plural": "alcancéis",
+      "Presente Subjuntivo; 3a persona; plural": "alcancen",
+      "Presente Imperativo Afirmativo; 3a persona; singular": "alcance",
+      "Presente Imperativo Afirmativo; 3a persona; plural": "alcancen",
+      "Presente Imperativo Negativo; 2a persona; singular": "no alcances",
+      "Presente Imperativo Negativo; 3a persona; singular": "no alcance",
+      "Presente Imperativo Negativo; 2a persona; plural": "no alcancéis",
+      "Presente Imperativo Negativo; 3a persona; plural": "no alcancen",
+      "Presente Imperativo Afirmativo; 1a persona; plural": "alcancemos",
+      "Presente Imperativo Negativo; 1a persona; plural": "no alcancemos"
+    },
+    "verb_suffix": "ar"
+  },
+  "aparecer": {
+    "english": "to appear",
+    "irregular_forms": {
+      "Presente Indicativo; 1a persona; singular": "aparezco",
+      "Presente Subjuntivo; 1a persona; singular": "aparezca",
+      "Presente Subjuntivo; 2a persona; singular": "aparezcas",
+      "Presente Subjuntivo; 3a persona; singular": "aparezca",
+      "Presente Subjuntivo; 1a persona; plural": "aparezcamos",
+      "Presente Subjuntivo; 2a persona; plural": "aparezcáis",
+      "Presente Subjuntivo; 3a persona; plural": "aparezcan",
+      "Presente Imperativo Afirmativo; 3a persona; singular": "aparezca",
+      "Presente Imperativo Afirmativo; 3a persona; plural": "aparezcan",
+      "Presente Imperativo Negativo; 2a persona; singular": "no aparezcas",
+      "Presente Imperativo Negativo; 3a persona; singular": "no aparezca",
+      "Presente Imperativo Negativo; 2a persona; plural": "no aparezcáis",
+      "Presente Imperativo Negativo; 3a persona; plural": "no aparezcan",
+      "Presente Imperativo Afirmativo; 1a persona; plural": "aparezcamos",
+      "Presente Imperativo Negativo; 1a persona; plural": "no aparezcamos"
+    },
+    "verb_suffix": "er"
+  },
+  "aprender": {
+    "english": "to learn",
+    "irregular_forms": {},
+    "verb_suffix": "er"
+  },
+  "ayudar": {
+    "english": "to help",
+    "irregular_forms": {},
+    "verb_suffix": "ar"
+  },
+  "añadir": {
+    "english": "to add",
+    "irregular_forms": {},
+    "verb_suffix": "ir"
+  },
+  "bailar": {
+    "english": "to dance",
+    "irregular_forms": {},
+    "verb_suffix": "ar"
+  },
+  "beber": {
+    "english": "to drink",
+    "irregular_forms": {},
+    "verb_suffix": "er"
+  }
+}

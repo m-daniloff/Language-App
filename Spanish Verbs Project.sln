@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verbs.Data.Interfaces", "Ve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verbs.Data", "Verbs.Data\Verbs.Data.csproj", "{7686E8CA-C22A-453B-AF4F-6ED4DB8DC04A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScratchPad", "ScratchPad\ScratchPad.csproj", "{587192EF-6103-4EDB-8A55-5448991CAF9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{7686E8CA-C22A-453B-AF4F-6ED4DB8DC04A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7686E8CA-C22A-453B-AF4F-6ED4DB8DC04A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7686E8CA-C22A-453B-AF4F-6ED4DB8DC04A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{587192EF-6103-4EDB-8A55-5448991CAF9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{587192EF-6103-4EDB-8A55-5448991CAF9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{587192EF-6103-4EDB-8A55-5448991CAF9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{587192EF-6103-4EDB-8A55-5448991CAF9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Verbs>
+  <Verb name="hablar" irregular="no" suffix="ar" english="to speak">
+    <Present first="hablo" second="hablas" third="habla" first_pl="hablamos" second_pl="hablais" third_pl="hablan"/>
+  </Verb>
+</Verbs>
