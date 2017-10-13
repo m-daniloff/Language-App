@@ -19,13 +19,49 @@
                 <TextBlock Text="{Binding Path=ElapsedTime}" Width="200" Margin="10"></TextBlock>
                 <Button Content="Start" Command="{Binding Path=StartCommand}" Width="100" Margin="10"></Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=Pronoun}" Width="100" Margin="10"></TextBlock>
-                <TextBlock Text="{Binding Path=Verb}" Width="200" Margin="10"></TextBlock>
-            </StackPanel>
+            <Grid Margin="10, 0, 0, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Tiempo"></TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Tiempo}"></TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Modo"></TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Modo}"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Pronoun"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Pronoun}"></TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Verb"></TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=Verb}"></TextBlock>
+            </Grid>
+                
+            <!--<StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Tiempo"></Label>
+                    <TextBlock Text="{Binding Path=Tiempo}"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Modo"></Label>
+                    <TextBlock Text="{Binding Path=Modo}"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Pronoun"></Label>
+                    <TextBlock Text="{Binding Path=Pronoun}"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Verb"></Label>
+                    <TextBlock Text="{Binding Path=Verb}"></TextBlock>
+                </StackPanel>
+            </StackPanel>-->
 
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding Path=Answer, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="10"></TextBox>
+                <Button Content="Check" Width="60" Margin="10"></Button>
             </StackPanel>
         </StackPanel>
     </Grid>

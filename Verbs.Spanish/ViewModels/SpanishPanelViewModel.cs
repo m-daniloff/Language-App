@@ -27,6 +27,8 @@ namespace Verbs.Spanish.ViewModels
         {
             Pronoun = "Yo";
             Verb = "Tener";
+            Tiempo = "Presente";
+            Modo = "Indicativo";
         }
 
         #region Properties
@@ -45,6 +47,8 @@ namespace Verbs.Spanish.ViewModels
 
         private string _pronoun;
         private string _verb;
+        private string _tiempo;
+        private string _modo;
 
         public string Pronoun
         {
@@ -65,6 +69,27 @@ namespace Verbs.Spanish.ViewModels
                 SetProperty(ref this._verb, value);
             }
         }
+
+        public string Tiempo
+        {
+            get => _tiempo;
+            set
+            {
+                _tiempo = value;
+                SetProperty(ref this._tiempo, value);
+            }
+        }
+
+        public string Modo
+        {
+            get => _modo;
+            set
+            {
+                _modo = value;
+                SetProperty(ref this._modo, value);
+            }
+        }
+
 
         private string _elapsedTime;
 
