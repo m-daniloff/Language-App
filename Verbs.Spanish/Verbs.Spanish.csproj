@@ -100,6 +100,10 @@
       <Project>{89701210-72b4-47ea-b2dc-b6ccb8b22b1c}</Project>
       <Name>Verbs.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Verbs.Model\Verbs.Model.csproj">
+      <Project>{e7f1b3f6-19bc-4363-96c7-019c2c8382ce}</Project>
+      <Name>Verbs.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\SpanishPanel.xaml">

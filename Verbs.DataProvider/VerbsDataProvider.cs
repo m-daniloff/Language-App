@@ -24,5 +24,13 @@ namespace Verbs.DataProvider
                 return dataService.GetAllVerbs();
             }
         }
+
+        public IEnumerable<Verb> GetVerbs(string tense, string mode)
+        {
+            using (var dataService = _dataServiceCreator())
+            {
+                return dataService.GetVerbsForTenseAndMode(tense, mode);
+            }
+        }
     }
 }
