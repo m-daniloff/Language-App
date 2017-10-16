@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using System.Windows.Markup;
 using Prism.Commands;
+using Verbs.Data.Interfaces;
 using Verbs.Infrastructure.Base;
+using Verbs.Model;
 
 namespace Verbs.Spanish.ViewModels
 {
     public class SpanishPanelViewModel : ViewModelBase
     {
-        public SpanishPanelViewModel()
+        private IVerbDataProvider _verbDataProvider;
+        public SpanishPanelViewModel(IVerbDataProvider verbDataProvider)
         {
-            InitiateTest();
+            _verbDataProvider = verbDataProvider;
+            LoadVerbData();
             InitializeCommands();
         }
 
@@ -21,10 +26,14 @@ namespace Verbs.Spanish.ViewModels
             StartCommand = new DelegateCommand(StartCommandExecuted, ()=> CanExecuteStartCommand);
         }
 
-      
 
-        private void InitiateTest()
+        private List<Verb> VerbList { get; set; }
+
+        private void LoadVerbData()
         {
+            var verbs = _verbDataProvider.GetVerbs("Presente", "Indicativo");
+            VerbList = verbs.ToList();
+
             Pronoun = "Yo";
             Verb = "Tener";
             Tiempo = "Presente";
@@ -113,6 +122,11 @@ namespace Verbs.Spanish.ViewModels
 
         private void StartCommandExecuted()
         {
+            Random random = new Random();
+            int index = random.Next(0, VerbList.Count);
+
+            var verb = VerbList[index];
+
         }
         public bool CanExecuteStartCommand => true;
         #endregion

@@ -96,6 +96,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Verbs.Data.Interfaces\Verbs.Data.Interfaces.csproj">
+      <Project>{7019427d-0e8e-4ea8-83dd-4ebc5d90c944}</Project>
+      <Name>Verbs.Data.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Verbs.Infrastructure\Verbs.Infrastructure.csproj">
       <Project>{89701210-72b4-47ea-b2dc-b6ccb8b22b1c}</Project>
       <Name>Verbs.Infrastructure</Name>

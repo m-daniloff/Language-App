@@ -3,6 +3,9 @@ using Prism.Unity;
 using Verbs.DemoApp.Views;
 using System.Windows;
 using Prism.Modularity;
+using Verbs.Data;
+using Verbs.Data.Interfaces;
+using Verbs.DataProvider;
 
 namespace Verbs.DemoApp
 {
@@ -11,6 +14,13 @@ namespace Verbs.DemoApp
         protected override DependencyObject CreateShell()
         {
             return Container.Resolve<MainWindow>();
+        }
+
+        protected override void ConfigureContainer()
+        {
+            base.ConfigureContainer();
+            Container.RegisterType<IDataService, VerbsDataService>();
+            Container.RegisterType<IVerbDataProvider, VerbsDataProvider>();
         }
 
         protected override void InitializeShell()
