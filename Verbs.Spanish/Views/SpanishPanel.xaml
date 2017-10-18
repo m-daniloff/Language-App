@@ -61,7 +61,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding Path=Answer, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="10"></TextBox>
-                <Button Content="Check" Width="60" Margin="10"></Button>
+                <Button Content="Check" Command="{Binding Path=CheckCommand}" Width="60" Margin="10"></Button>
             </StackPanel>
         </StackPanel>
     </Grid>

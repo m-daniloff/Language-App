@@ -24,6 +24,7 @@ namespace Verbs.Spanish.ViewModels
         private void InitializeCommands()
         {
             StartCommand = new DelegateCommand(StartCommandExecuted, ()=> CanExecuteStartCommand);
+            CheckCommand = new DelegateCommand(CheckCommandExecuted, () => CanExecuteCheckCommand);
         }
 
 
@@ -113,6 +114,7 @@ namespace Verbs.Spanish.ViewModels
         }
 
         public ICommand StartCommand { get; private set; }
+        public ICommand CheckCommand { get; private set; }
 
         #endregion
 
@@ -122,13 +124,26 @@ namespace Verbs.Spanish.ViewModels
 
         private void StartCommandExecuted()
         {
+            GetNextVerb();
+        }
+        public bool CanExecuteStartCommand => true;
+
+
+        public bool CanExecuteCheckCommand { get; set; }
+
+        private void CheckCommandExecuted()
+        {
+            //throw new NotImplementedException();
+        }
+
+        #endregion
+
+        private void GetNextVerb()
+        {
             Random random = new Random();
             int index = random.Next(0, VerbList.Count);
 
             var verb = VerbList[index];
-
         }
-        public bool CanExecuteStartCommand => true;
-        #endregion
     }
 }
