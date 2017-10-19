@@ -65,7 +65,6 @@ namespace Verbs.Spanish.ViewModels
             get => _pronoun;
             set
             {
-                _pronoun = value;
                 SetProperty(ref this._pronoun, value);
             }
         }
@@ -75,7 +74,7 @@ namespace Verbs.Spanish.ViewModels
             get => _verb;
             set
             {
-                _verb = value;
+                //_verb = value;
                 SetProperty(ref this._verb, value);
             }
         }
@@ -85,7 +84,6 @@ namespace Verbs.Spanish.ViewModels
             get => _tiempo;
             set
             {
-                _tiempo = value;
                 SetProperty(ref this._tiempo, value);
             }
         }
@@ -95,7 +93,6 @@ namespace Verbs.Spanish.ViewModels
             get => _modo;
             set
             {
-                _modo = value;
                 SetProperty(ref this._modo, value);
             }
         }
@@ -144,6 +141,9 @@ namespace Verbs.Spanish.ViewModels
             int index = random.Next(0, VerbList.Count);
 
             var verb = VerbList[index];
+
+            Verb = verb.Name;
+            Pronoun = "Ellos";
         }
     }
 }

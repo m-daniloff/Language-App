@@ -35,9 +35,9 @@
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Modo"></TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Modo}"></TextBlock>
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Pronoun"></TextBlock>
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Pronoun}"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Pronoun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Verb"></TextBlock>
-                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=Verb}"></TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=Verb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
             </Grid>
                 
             <!--<StackPanel Orientation="Vertical">
