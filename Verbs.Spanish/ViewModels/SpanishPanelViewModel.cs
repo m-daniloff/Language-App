@@ -52,6 +52,7 @@ namespace Verbs.Spanish.ViewModels
             {
                 _answer = value;
                 SetProperty(ref this._answer, value);
+                RaiseCanExecuteChanged();
             }
         }
 
@@ -126,11 +127,24 @@ namespace Verbs.Spanish.ViewModels
         public bool CanExecuteStartCommand => true;
 
 
-        public bool CanExecuteCheckCommand { get; set; }
+        public bool CanExecuteCheckCommand
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(Answer);
+            }
+        }
 
         private void CheckCommandExecuted()
         {
             //throw new NotImplementedException();
+            int n = Answer.Length;
+        }
+
+        private void RaiseCanExecuteChanged()
+        {
+            DelegateCommand command = CheckCommand as DelegateCommand;
+            command.RaiseCanExecuteChanged();
         }
 
         #endregion

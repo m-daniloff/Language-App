@@ -60,7 +60,11 @@
             </StackPanel>-->
 
             <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding Path=Answer, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="10"></TextBox>
+                <TextBox Text="{Binding Path=Answer, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="10">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding CheckCommand}" Key="Return"></KeyBinding>
+                    </TextBox.InputBindings>
+                </TextBox>
                 <Button Content="Check" Command="{Binding Path=CheckCommand}" Width="60" Margin="10"></Button>
             </StackPanel>
         </StackPanel>
