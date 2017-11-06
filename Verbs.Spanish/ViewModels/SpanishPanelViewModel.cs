@@ -27,6 +27,8 @@ namespace Verbs.Spanish.ViewModels
             CheckCommand = new DelegateCommand(CheckCommandExecuted, () => CanExecuteCheckCommand);
         }
 
+        private List<string> PronounsList = new List<string>(){"Yo", "Tú", "El/Ella/Ud", "Nosotros/Nosotras", "Vosotros", "Ellos/Ellas/Uds"};
+
 
         private List<Verb> VerbList { get; set; }
 
@@ -138,13 +140,16 @@ namespace Verbs.Spanish.ViewModels
         private void CheckCommandExecuted()
         {
             //throw new NotImplementedException();
+
+            //Have to compare whatever in the text field
+            // against the verb in the table
             int n = Answer.Length;
         }
 
         private void RaiseCanExecuteChanged()
         {
             DelegateCommand command = CheckCommand as DelegateCommand;
-            command.RaiseCanExecuteChanged();
+            command?.RaiseCanExecuteChanged();
         }
 
         #endregion
@@ -157,7 +162,9 @@ namespace Verbs.Spanish.ViewModels
             var verb = VerbList[index];
 
             Verb = verb.Name;
-            Pronoun = "Ellos";
+
+            index = random.Next(0, PronounsList.Count);
+            Pronoun = PronounsList[index];
         }
     }
 }
