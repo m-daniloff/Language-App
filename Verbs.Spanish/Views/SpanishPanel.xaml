@@ -39,33 +39,18 @@
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Verb"></TextBlock>
                 <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=Verb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
             </Grid>
-                
-            <!--<StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Tiempo"></Label>
-                    <TextBlock Text="{Binding Path=Tiempo}"></TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Modo"></Label>
-                    <TextBlock Text="{Binding Path=Modo}"></TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Pronoun"></Label>
-                    <TextBlock Text="{Binding Path=Pronoun}"></TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Verb"></Label>
-                    <TextBlock Text="{Binding Path=Verb}"></TextBlock>
-                </StackPanel>
-            </StackPanel>-->
-
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding Path=Answer, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="10">
                     <TextBox.InputBindings>
                         <KeyBinding Command="{Binding CheckCommand}" Key="Return"></KeyBinding>
                     </TextBox.InputBindings>
                 </TextBox>
-                <Button Content="Check" Command="{Binding Path=CheckCommand}" Width="60" Margin="10"></Button>
+                <Button Content="Check" Command="{Binding Path=CheckCommand}" Width="60" Margin="10"/>
+                
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Margin="10" Text="{Binding Path=CorrectCount}" Width="20"></TextBlock>
+                <TextBlock Margin="10" Text="{Binding Path=AttemptsCount, UpdateSourceTrigger=PropertyChanged}" Width="20"></TextBlock>
             </StackPanel>
         </StackPanel>
     </Grid>

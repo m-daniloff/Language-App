@@ -20,7 +20,7 @@ namespace Verbs.Data
 
         public IEnumerable<Verb> GetVerbsForTenseAndMode(string verbTense, string mode)
         {
-            using (StreamReader reader = new StreamReader(@"..\..\..\Data\data.json"))
+            using (StreamReader reader = new StreamReader(@"..\..\..\Data\short.json"))
             {
                 string json = reader.ReadToEnd();
                 var result = JsonConvert.DeserializeObject<Dictionary<string, List<Verb>>>(json);

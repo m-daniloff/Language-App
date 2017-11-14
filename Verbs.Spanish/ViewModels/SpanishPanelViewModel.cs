@@ -27,7 +27,7 @@ namespace Verbs.Spanish.ViewModels
             CheckCommand = new DelegateCommand(CheckCommandExecuted, () => CanExecuteCheckCommand);
         }
 
-        private List<string> PronounsList = new List<string>(){"Yo", "Tú", "El/Ella/Ud", "Nosotros/Nosotras", "Vosotros", "Ellos/Ellas/Uds"};
+        private List<string> PronounsList = new List<string>(){"Yo", "Tu", "El", "Nos", "Vos", "Ellos"};
 
 
         private List<Verb> VerbList { get; set; }
@@ -41,6 +41,8 @@ namespace Verbs.Spanish.ViewModels
             Verb = "Tener";
             Tiempo = "Presente";
             Modo = "Indicativo";
+
+            GetNextVerb();
         }
 
         #region Properties
@@ -100,8 +102,18 @@ namespace Verbs.Spanish.ViewModels
             }
         }
 
+        private Verb _selectedVerb;
+
+        public Verb SelectedVerb
+        {
+            get => _selectedVerb;
+            set { SetProperty(ref this._selectedVerb, value); }
+        }
+
 
         private string _elapsedTime;
+        private int _correctCount;
+        private int _attemptsCount;
 
         public string ElapsedTime
         {
@@ -110,6 +122,24 @@ namespace Verbs.Spanish.ViewModels
             {
                 _elapsedTime = value;
                 SetProperty(ref this._elapsedTime, value);
+            }
+        }
+
+        public int CorrectCount
+        {
+            get => _correctCount;
+            set
+            {
+                SetProperty(ref this._correctCount, value);
+            }
+        }
+
+        public int AttemptsCount
+        {
+            get => _attemptsCount;
+            set
+            {
+                SetProperty(ref this._attemptsCount, value);
             }
         }
 
@@ -139,11 +169,15 @@ namespace Verbs.Spanish.ViewModels
 
         private void CheckCommandExecuted()
         {
-            //throw new NotImplementedException();
 
-            //Have to compare whatever in the text field
-            // against the verb in the table
-            int n = Answer.Length;
+            AttemptsCount++;
+
+            var expected = SelectedVerb.GetInflected(Pronoun);
+
+            if (expected == Answer)
+            {
+                CorrectCount++;
+            }
         }
 
         private void RaiseCanExecuteChanged()
@@ -159,9 +193,9 @@ namespace Verbs.Spanish.ViewModels
             Random random = new Random();
             int index = random.Next(0, VerbList.Count);
 
-            var verb = VerbList[index];
+            SelectedVerb = VerbList[index];
 
-            Verb = verb.Name;
+            Verb = SelectedVerb.Name;
 
             index = random.Next(0, PronounsList.Count);
             Pronoun = PronounsList[index];
