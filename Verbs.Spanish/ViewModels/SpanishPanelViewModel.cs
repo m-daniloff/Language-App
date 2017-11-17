@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
+using System.Threading;
 using System.Windows.Input;
 using System.Windows.Markup;
 using Prism.Commands;
@@ -15,6 +16,7 @@ namespace Verbs.Spanish.ViewModels
     public class SpanishPanelViewModel : ViewModelBase
     {
         private IVerbDataProvider _verbDataProvider;
+        private Timer _timer;
         public SpanishPanelViewModel(IVerbDataProvider verbDataProvider)
         {
             _verbDataProvider = verbDataProvider;
@@ -125,11 +127,11 @@ namespace Verbs.Spanish.ViewModels
         }
 
 
-        private string _elapsedTime;
+        private int _elapsedTime;
         private int _correctCount;
         private int _attemptsCount;
 
-        public string ElapsedTime
+        public int ElapsedTime
         {
             get => _elapsedTime;
             set
@@ -169,8 +171,16 @@ namespace Verbs.Spanish.ViewModels
         private void StartCommandExecuted()
         {
             CanExecuteStartCommand = false;
+
+            _timer = new Timer(OnTimer, null, 0, 1000);
             GetNextVerb();
         }
+
+        private void OnTimer(object state)
+        {
+            ElapsedTime++;
+        }
+
         public bool CanExecuteStartCommand { get; set; }
 
 
