@@ -17,6 +17,7 @@ namespace Verbs.DataProvider
             _dataServiceCreator = dataServiceCreator;
         }
 
+        [Obsolete]
         public IEnumerable<Verb> GetAllVerbs()
         {
             using (var dataService = _dataServiceCreator())
@@ -25,11 +26,20 @@ namespace Verbs.DataProvider
             }
         }
 
+        [Obsolete]
         public IEnumerable<Verb> GetVerbs(string tense, string mode)
         {
             using (var dataService = _dataServiceCreator())
             {
                 return dataService.GetVerbsForTenseAndMode(tense, mode);
+            }
+        }
+
+        public IEnumerable<VerbWrapper> GetAllVerbWrappers()
+        {
+            using (var dataService = _dataServiceCreator())
+            {
+                return dataService.GetAllVerbWrappers();
             }
         }
     }

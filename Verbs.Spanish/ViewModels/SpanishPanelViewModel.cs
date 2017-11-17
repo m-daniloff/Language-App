@@ -34,6 +34,9 @@ namespace Verbs.Spanish.ViewModels
 
         private void LoadVerbData()
         {
+            //test
+            var result = _verbDataProvider.GetAllVerbWrappers();
+            // end test
             var verbs = _verbDataProvider.GetVerbs("Presente", "Indicativo");
             VerbList = verbs.ToList();
 

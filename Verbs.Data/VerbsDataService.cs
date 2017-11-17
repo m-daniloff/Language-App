@@ -12,15 +12,17 @@ namespace Verbs.Data
 {
     public class VerbsDataService : IDataService
     {
+        [Obsolete]
         public IEnumerable<Verb> GetAllVerbs()
         {
             // ???
             throw new NotImplementedException();
         }
 
+        [Obsolete]
         public IEnumerable<Verb> GetVerbsForTenseAndMode(string verbTense, string mode)
         {
-            using (StreamReader reader = new StreamReader(@"..\..\..\Data\short.json"))
+            using (StreamReader reader = new StreamReader(@"..\..\..\Data\data.json"))
             {
                 string json = reader.ReadToEnd();
                 var result = JsonConvert.DeserializeObject<Dictionary<string, List<Verb>>>(json);
@@ -36,7 +38,26 @@ namespace Verbs.Data
                 }
             }
         }
-        
+
+        public IEnumerable<VerbWrapper> GetAllVerbWrappers()
+        {
+            using (StreamReader reader = new StreamReader(@"..\..\..\Data\data1.json"))
+            {
+                string json = reader.ReadToEnd();
+                var result = JsonConvert.DeserializeObject<Dictionary<string, VerbWrapper>>(json);
+
+                foreach (var item in result)
+                {
+                    yield return item.Value;
+                }
+            }
+        }
+
+        public IEnumerable<VerbWrapper> GetVerbWrappersForTenseAndMode(string verbTense, string mode)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public void Dispose()
         {
