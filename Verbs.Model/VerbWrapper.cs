@@ -9,6 +9,8 @@ namespace Verbs.Model
     public class VerbWrapper
     {
         public List<Verb> VerbForms { get; set; }
+
+        public string Name { get; set; }
         public string Translation { get; set; }
         public string Suffix { get; set; }
 

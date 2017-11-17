@@ -8,7 +8,7 @@ namespace Verbs.Model
 {
     public class Verb
     {
-        public string Name { get; set; }
+       // public string Name { get; set; }
         public string Tense { get; set; }
         public string Modo { get; set; }
         public Inflections Inflections { get; set; }

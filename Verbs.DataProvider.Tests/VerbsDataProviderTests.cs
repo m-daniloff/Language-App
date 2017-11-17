@@ -24,7 +24,7 @@ namespace Verbs.DataProvider.Tests
             inflections.Vos = "abreis";
 
             var verb = new Verb();
-            verb.Name = "abrir";
+            //verb.Name = "abrir";
             verb.Modo = "Indicativo";
             verb.Tense = "Presente";
             verb.Inflections = inflections;

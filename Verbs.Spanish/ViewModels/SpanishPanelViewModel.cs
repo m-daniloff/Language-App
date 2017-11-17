@@ -30,14 +30,14 @@ namespace Verbs.Spanish.ViewModels
         private List<string> PronounsList = new List<string>(){"Yo", "Tu", "El", "Nos", "Vos", "Ellos"};
 
 
-        private List<Verb> VerbList { get; set; }
+        private List<VerbWrapper> VerbList { get; set; }
 
         private void LoadVerbData()
         {
             //test
-            var result = _verbDataProvider.GetAllVerbWrappers();
+            var verbs = _verbDataProvider.GetAllVerbWrappers();
             // end test
-            var verbs = _verbDataProvider.GetVerbs("Presente", "Indicativo");
+            //var verbs = _verbDataProvider.GetVerbs("Presente", "Indicativo");
             VerbList = verbs.ToList();
 
             Pronoun = "Yo";
@@ -105,9 +105,9 @@ namespace Verbs.Spanish.ViewModels
             }
         }
 
-        private Verb _selectedVerb;
+        private VerbWrapper _selectedVerb;
 
-        public Verb SelectedVerb
+        public VerbWrapper SelectedVerb
         {
             get => _selectedVerb;
             set { SetProperty(ref this._selectedVerb, value); }
@@ -175,12 +175,12 @@ namespace Verbs.Spanish.ViewModels
 
             AttemptsCount++;
 
-            var expected = SelectedVerb.GetInflected(Pronoun);
+            //var expected = SelectedVerb.GetInflected(Pronoun);
 
-            if (expected == Answer)
-            {
-                CorrectCount++;
-            }
+            //if (expected == Answer)
+            //{
+            //    CorrectCount++;
+            //}
         }
 
         private void RaiseCanExecuteChanged()
