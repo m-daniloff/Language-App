@@ -7,8 +7,14 @@
              xmlns:prism="http://prismlibrary.com/"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600"
-             prism:ViewModelLocator.AutoWireViewModel="True" >
+             prism:ViewModelLocator.AutoWireViewModel="True" FontSize="16">
     <Grid>
+        <Grid.Resources>
+            <Style x:Key="btnKeyboardStyle" TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="5"></Setter>
+                <Setter Property="Width" Value="20"></Setter>
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="3*"></RowDefinition>
@@ -35,22 +41,34 @@
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Modo"></TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Modo}"></TextBlock>
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Pronoun"></TextBlock>
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Pronoun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Pronoun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"></TextBlock>
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Verb"></TextBlock>
-                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=Verb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=Verb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"
+                           ToolTip="{Binding Translation}"></TextBlock>
             </Grid>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding Path=Answer, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="10">
-                    <TextBox.InputBindings>
-                        <KeyBinding Command="{Binding CheckCommand}" Key="Return"></KeyBinding>
-                    </TextBox.InputBindings>
-                </TextBox>
-                <Button Content="Check" Command="{Binding Path=CheckCommand}" Width="60" Margin="10"/>
-                
-            </StackPanel>
+            
             <StackPanel Orientation="Vertical">
-                <TextBlock Margin="10" Text="{Binding Path=CorrectCount}" Width="20"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Text="{Binding Path=Answer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="10">
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding CheckCommand}" Key="Return"></KeyBinding>
+                        </TextBox.InputBindings>
+                    </TextBox>
+                    <Button Content="Check" Command="{Binding Path=CheckCommand}" Width="60" Margin="10"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource btnKeyboardStyle}" Content="á" Command="{Binding Path=KeyCommand}" CommandParameter="á"/>
+                    <Button Style="{StaticResource btnKeyboardStyle}" Content="é" Command="{Binding Path=KeyCommand}" CommandParameter="é"/>
+                    <Button Style="{StaticResource btnKeyboardStyle}" Content="í" Command="{Binding Path=KeyCommand}" CommandParameter="í"/>
+                    <Button Style="{StaticResource btnKeyboardStyle}" Content="ó" Command="{Binding Path=KeyCommand}" CommandParameter="ó"/>
+                    <Button Style="{StaticResource btnKeyboardStyle}" Content="ú" Command="{Binding Path=KeyCommand}" CommandParameter="ú"/>
+                    <Button Style="{StaticResource btnKeyboardStyle}" Content="ñ" Command="{Binding Path=KeyCommand}" CommandParameter="ñ"/>
+                    <Button Style="{StaticResource btnKeyboardStyle}" Content="ü" Command="{Binding Path=KeyCommand}" CommandParameter="ü"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="10" Text="{Binding Path=CorrectCount}" Width="20"></TextBlock>
                 <TextBlock Margin="10" Text="{Binding Path=AttemptsCount, UpdateSourceTrigger=PropertyChanged}" Width="20"></TextBlock>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>

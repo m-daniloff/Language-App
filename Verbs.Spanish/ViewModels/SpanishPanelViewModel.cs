@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Windows.Input;
 using System.Windows.Markup;
@@ -23,8 +24,11 @@ namespace Verbs.Spanish.ViewModels
 
         private void InitializeCommands()
         {
+            CanExecuteStartCommand = true;
             StartCommand = new DelegateCommand(StartCommandExecuted, ()=> CanExecuteStartCommand);
             CheckCommand = new DelegateCommand(CheckCommandExecuted, () => CanExecuteCheckCommand);
+            KeyCommand = new DelegateCommand<string>(OnKeyCommand);
+
         }
 
         private List<string> PronounsList = new List<string>(){"Yo", "Tu", "El", "Nos", "Vos", "Ellos"};
@@ -35,17 +39,17 @@ namespace Verbs.Spanish.ViewModels
         private void LoadVerbData()
         {
             //test
-            var verbs = _verbDataProvider.GetAllVerbWrappers();
+            VerbList = _verbDataProvider.GetAllVerbWrappers().ToList();
             // end test
             //var verbs = _verbDataProvider.GetVerbs("Presente", "Indicativo");
-            VerbList = verbs.ToList();
+            //VerbList = verbs.ToList();
 
             Pronoun = "Yo";
             Verb = "Tener";
             Tiempo = "Presente";
             Modo = "Indicativo";
 
-            GetNextVerb();
+            //GetNextVerb();
         }
 
         #region Properties
@@ -57,7 +61,6 @@ namespace Verbs.Spanish.ViewModels
             get => _answer;
             set
             {
-                _answer = value;
                 SetProperty(ref this._answer, value);
                 RaiseCanExecuteChanged();
             }
@@ -85,6 +88,14 @@ namespace Verbs.Spanish.ViewModels
                 //_verb = value;
                 SetProperty(ref this._verb, value);
             }
+        }
+
+        private string _translation;
+        public string Translation
+        {
+            get { return _translation; }
+            set { SetProperty(ref this._translation, value); }
+            
         }
 
         public string Tiempo
@@ -123,7 +134,6 @@ namespace Verbs.Spanish.ViewModels
             get => _elapsedTime;
             set
             {
-                _elapsedTime = value;
                 SetProperty(ref this._elapsedTime, value);
             }
         }
@@ -148,6 +158,7 @@ namespace Verbs.Spanish.ViewModels
 
         public ICommand StartCommand { get; private set; }
         public ICommand CheckCommand { get; private set; }
+        public ICommand KeyCommand { get; private set; }
 
         #endregion
 
@@ -157,9 +168,10 @@ namespace Verbs.Spanish.ViewModels
 
         private void StartCommandExecuted()
         {
+            CanExecuteStartCommand = false;
             GetNextVerb();
         }
-        public bool CanExecuteStartCommand => true;
+        public bool CanExecuteStartCommand { get; set; }
 
 
         public bool CanExecuteCheckCommand
@@ -175,14 +187,31 @@ namespace Verbs.Spanish.ViewModels
 
             AttemptsCount++;
 
-            //var expected = SelectedVerb.GetInflected(Pronoun);
+            var expected = GetExpectedVerb().GetInflected(Pronoun);
 
-            //if (expected == Answer)
-            //{
-            //    CorrectCount++;
-            //}
+            if (expected == Answer)
+            {
+                CorrectCount++;
+                Answer = string.Empty;
+                GetNextVerb();
+            }
         }
 
+        private void OnKeyCommand(string arg)
+        {
+            Answer += arg;
+        }
+
+        private bool CanExecuteKeyCommand
+        {
+            get { return true; }
+        }
+
+        private Verb GetExpectedVerb()
+        {
+            return SelectedVerb.VerbForms.FirstOrDefault(v => v.Tense == Tiempo && v.Modo == Modo);
+
+        }
         private void RaiseCanExecuteChanged()
         {
             DelegateCommand command = CheckCommand as DelegateCommand;
@@ -199,6 +228,7 @@ namespace Verbs.Spanish.ViewModels
             SelectedVerb = VerbList[index];
 
             Verb = SelectedVerb.Name;
+            Translation = SelectedVerb.Translation;
 
             index = random.Next(0, PronounsList.Count);
             Pronoun = PronounsList[index];
