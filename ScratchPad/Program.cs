@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -16,13 +17,11 @@ namespace ScratchPad
         private static Dictionary<string, string> _translationDictionary = new Dictionary<string, string>();
         static void Main(string[] args)
         {
-            ReadAnotherOne();
-            //Test();
-            //       ReadBack();
-            //ReadBackImport();
-            CsvTestEx();
+            //ReadAnotherOne();
+            
+            //CsvTestEx();
 
-
+            ReadBack();
         }
 
         static Dictionary<string, List<Verb>> dictionary = new Dictionary<string, List<Verb>>();
@@ -46,6 +45,7 @@ namespace ScratchPad
                         dictionary.Add(result.Name,
                             new VerbWrapper()
                             {
+                                Name = result.Name,
                                 Translation = GetTranslation(result.Name),
                                 Suffix = GetSuffix(result.Name),
                                 Irregular = false,
@@ -221,16 +221,61 @@ namespace ScratchPad
 
             return "Notranslation";
         }
-      
 
-        //private static void ReadBack()
-        //{
-        //    using (StreamReader reader = new StreamReader(@"C:\Temp\out.json"))
-        //    {
-        //        string json = reader.ReadToEnd();
-        //        var result = JsonConvert.DeserializeObject<List<SpanishVerb>>(json);
-        //    }
-        //}
+
+        private static void ReadBack()
+        {
+            Dictionary<string, VerbWrapper> source = new Dictionary<string, VerbWrapper>();
+            using (StreamReader reader = new StreamReader(@"C:\Temp\outEx.json"))
+            {
+                string json = reader.ReadToEnd();
+                source = JsonConvert.DeserializeObject<Dictionary<string, VerbWrapper>>(json);
+            }
+
+            Dictionary<string, VerbWrapper2> target = new Dictionary<string, VerbWrapper2>();
+
+            foreach (var input in source)
+            {
+                VerbWrapper vw = input.Value;
+                List<Verb> lst = vw.VerbForms;
+
+                List<Verb2> lst2 = new List<Verb2>();
+
+                foreach (var l in lst)
+                {
+                    var v2 = new Verb2();
+                    v2.Modo = l.Modo;
+                    v2.Tense = l.Tense;
+                    v2.Inflections = l.Inflections;
+
+                    lst2.Add(v2);
+                }
+
+                VerbWrapper2 vw2 = new VerbWrapper2();
+                vw2.Name = vw.Name;
+                vw2.Irregular = vw.Irregular;
+                vw2.Suffix = vw.Suffix;
+                vw2.Translation = vw.Translation;
+                vw2.VerbForms = lst2;
+                target.Add(input.Key,  vw2);
+            }
+
+            int n = target.Count;
+
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.NullValueHandling = NullValueHandling.Ignore;
+            serializer.Formatting = Formatting.Indented;
+            using (StreamWriter sw = new StreamWriter(@"c:\temp\Better.json"))
+            {
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, target);
+
+                }
+            }
+
+            n = target.Count;
+        }
 
 
         private static void ReadAnotherOne()
@@ -251,15 +296,6 @@ namespace ScratchPad
                 }
             }
         }
-
-        private static KeyValuePair<string, string> ProcessPair(string[] line)
-        {
-
-            string spanish = line[0];
-            string english = line[1];
-
-            return new KeyValuePair<string, string>(spanish, english);
-        }
     }
 
 
@@ -274,6 +310,26 @@ namespace ScratchPad
     public class VerbWrapper
     {
         public List<Verb> VerbForms { get; set; }
+        public string Name { get; set; }
+        public string Translation { get; set; }
+        public string Suffix { get; set; }
+
+        public bool Irregular { get; set; }
+    }
+
+
+    //CONVERT
+    public class Verb2
+    {
+        public string Tense { get; set; }
+        public string Modo { get; set; }
+        public Inflections Inflections { get; set; }
+    }
+
+    public class VerbWrapper2
+    {
+        public List<Verb2> VerbForms { get; set; }
+        public string Name { get; set; }
         public string Translation { get; set; }
         public string Suffix { get; set; }
 
