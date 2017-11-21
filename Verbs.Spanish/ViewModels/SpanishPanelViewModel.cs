@@ -188,7 +188,7 @@ namespace Verbs.Spanish.ViewModels
         {
             get
             {
-                return !string.IsNullOrEmpty(Answer);
+                return !string.IsNullOrEmpty(Answer) && !CanExecuteStartCommand;
             }
         }
 
