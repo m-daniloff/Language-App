@@ -31,6 +31,7 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -45,6 +46,8 @@
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Verb"></TextBlock>
                 <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=Verb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"
                            ToolTip="{Binding Translation}"></TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Suffix"></TextBlock>
+                <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Suffixes}" SelectedIndex="0" SelectedItem="{Binding SelectedSuffix}"></ComboBox>
             </Grid>
             
             <StackPanel Orientation="Vertical">

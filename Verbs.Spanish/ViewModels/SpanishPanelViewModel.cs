@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Security.Policy;
 using System.Text;
 using System.Threading;
@@ -35,6 +36,31 @@ namespace Verbs.Spanish.ViewModels
 
         private List<string> PronounsList = new List<string>(){"Yo", "Tu", "El", "Nos", "Vos", "Ellos"};
 
+        public List<string> Suffixes
+        {
+            get
+            {
+                return new List<string> { "ar", "er", "ir", "all" };
+            }
+        }
+
+        private string _selectedSuffix;
+
+        public string SelectedSuffix
+        {
+            get { return _selectedSuffix; }
+            set
+            {
+                if (_selectedSuffix != value)
+                {
+                    _selectedSuffix = value;
+                    if (_selectedSuffix != "all")
+                    {
+                        VerbList = VerbList.Where(vw => vw.Suffix == value).ToList();
+                    }
+                }
+            }
+        }
 
         private List<VerbWrapper> VerbList { get; set; }
 
@@ -216,7 +242,7 @@ namespace Verbs.Spanish.ViewModels
         {
             get { return true; }
         }
-
+        
         private Verb GetExpectedVerb()
         {
             return SelectedVerb.VerbForms.FirstOrDefault(v => v.Tense == Tiempo && v.Modo == Modo);
